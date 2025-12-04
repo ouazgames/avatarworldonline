@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: 'Home', url: '/' },
+  { name: 'Contact', url: '/contact/' }
+];
+---
+
+<BaseLayout
+  title="Contact Us - Avatar World Online | Support & Help"
+  description="Contact Avatar World Online team. Get support, report issues, or share feedback about playing Avatar World free online. We respond quickly!"
+  keywords="avatar world contact, avatar world support, avatar world help, avatar world online contact"
+>
+  <Header />
+  
+  <main id="main-content">
+    <div class="container">
+      <Breadcrumbs items={breadcrumbItems} />
+      
+      <article class="contact-page">
+        <header class="page-header">
+          <h1>Contact Us</h1>
+          <p class="intro">Have questions about Avatar World? We're here to help!</p>
+        </header>
+        
+        <section class="contact-content">
+          <h2>Get in Touch</h2>
+          <p>Whether you have questions about playing Avatar World online, need technical support, or want to share feedback, we're happy to hear from you!</p>
+          
+          <div class="contact-methods">
+            <div class="contact-method">
+              <h3>📧 General Support</h3>
+              <p>For questions and help:</p>
+              <p><a href="mailto:contact@avatarworldonline.com">contact@avatarworldonline.com</a></p>
+            </div>
+            
+            <div class="contact-method">
+              <h3>🔒 Privacy Inquiries</h3>
+              <p>For privacy-related questions:</p>
+              <p><a href="mailto:privacy@avatarworldonline.com">privacy@avatarworldonline.com</a></p>
+            </div>
+            
+            <div class="contact-method">
+              <h3>⚖️ DMCA & Copyright</h3>
+              <p>For copyright notices:</p>
+              <p><a href="mailto:dmca@avatarworldonline.com">dmca@avatarworldonline.com</a></p>
+            </div>
+          </div>
+          
+          <h2>Frequently Asked Questions</h2>
+          
+          <h3>How do I play Avatar World on this website?</h3>
+          <p>Simply visit our homepage and click play! The game loads directly in your browser - no download or registration required.</p>
+          
+          <h3>Is Avatar World free to play here?</h3>
+          <p>Yes! Playing Avatar World on AvatarWorldOnline.com is completely free. Just open and play!</p>
+          
+          <h3>The game isn't loading. What should I do?</h3>
+          <p>Try these solutions:</p>
+          <ul>
+            <li>Refresh the page (F5 or Cmd+R)</li>
+            <li>Clear your browser cache</li>
+            <li>Try a different browser (Chrome, Firefox, Edge)</li>
+            <li>Check your internet connection</li>
+            <li>Disable ad blockers temporarily</li>
+          </ul>
+          
+          <h3>Can I play on mobile?</h3>
+          <p>Our browser version works on mobile devices. For the best mobile experience, we recommend downloading the official Avatar World app from Google Play or App Store.</p>
+          
+          <h2>Response Time</h2>
+          <p>We typically respond to all inquiries within 24-48 hours. Thank you for your patience!</p>
+        </section>
+      </article>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    color: var(--pink);
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    color: var(--text-light);
+    font-size: 1.1rem;
+  }
+
+  .contact-content h2 {
+    color: var(--cyan);
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--purple);
+  }
+
+  .contact-content h3 {
+    color: var(--yellow);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .contact-method {
+    background: rgba(255, 107, 157, 0.05);
+    border-left: 4px solid var(--pink);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-method:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 107, 157, 0.1);
+  }
+
+  .contact-method h3 {
+    margin-top: 0;
+    color: var(--pink);
+  }
+
+  .contact-content ul {
+    margin: 1rem 0 1rem 2rem;
+  }
+
+  .contact-content li {
+    margin-bottom: 0.5rem;
+  }
+</style>

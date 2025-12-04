@@ -1,0 +1,1121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import RatingWidget from '../components/RatingWidget.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import GameIframe from '../components/GameIframe.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+const breadcrumbItems = [
+  { name: 'Home', url: '/' }
+];
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Avatar World Online",
+  "url": "https://avatarworldonline.com",
+  "logo": "https://avatarworldonline.com/assets/icons/avatar-world-icon.png",
+  "description": "Play Avatar World free online - The best simulation game for kids! Create characters, explore cities, and build your dream world. No download required!",
+  "sameAs": [
+    "https://play.google.com/store/apps/details?id=com.pazugames.avatarworld",
+    "https://apps.apple.com/us/app/avatar-world/id1635318586"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Support",
+    "url": "https://avatarworldonline.com/contact/"
+  }
+};
+
+const gameSchema = {
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Avatar World",
+  "alternateName": ["Avatar World Online", "Avatar World City Life", "Avatar World Pazu"],
+  "description": "Avatar World is the most innovative role-playing simulation game where you can create customizable avatars, build dream homes, and explore vibrant virtual cities. Be whoever you want - create unlimited stories with friends and family!",
+  "genre": ["Simulation", "Role-Playing", "Life Simulation", "Sandbox", "Dress Up"],
+  "gamePlatform": ["Web Browser", "Android", "iOS", "PC"],
+  "applicationCategory": "Game",
+  "operatingSystem": ["Android 6.0+", "iOS 12.0+", "Web Browser", "Windows"],
+  "url": "https://avatarworldonline.com",
+  "image": "https://avatarworldonline.com/assets/covers/avatar-world-cover.png",
+  "screenshot": "https://avatarworldonline.com/assets/covers/avatar-world-cover.png",
+  "author": {
+    "@type": "Organization",
+    "name": "Pazu Games Ltd",
+    "url": "https://pazugames.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pazu Games Ltd"
+  },
+  "datePublished": "2022-12-01",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "245000",
+    "reviewCount": "245000"
+  },
+  "audience": {
+    "@type": "PeopleAudience",
+    "suggestedMinAge": "4",
+    "audienceType": "Kids, Families"
+  },
+  "inLanguage": ["en", "es", "fr", "de", "pt", "ru", "ja", "ko", "zh"],
+  "contentRating": "Everyone",
+  "isFamilyFriendly": true
+};
+
+const webApplicationSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Avatar World Online",
+  "url": "https://avatarworldonline.com",
+  "applicationCategory": "GameApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "softwareVersion": "1.0",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "245000"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Avatar World?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Avatar World is a popular simulation and role-playing game developed by Pazu Games. It allows players to create customizable avatars, explore virtual cities, build homes, and create unlimited stories. With over 220 million downloads, it's one of the most beloved kids games worldwide."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I play Avatar World online for free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! You can play Avatar World online for free right here on AvatarWorldOnline.com. No download required - just click play and start creating your avatar and exploring the virtual world instantly in your browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Avatar World safe for kids?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Avatar World is designed specifically for children and families. It has no open chat with strangers, no violent content, and is rated 4+ on iOS and Everyone on Android. It's trusted by over 100 million families worldwide and has a Teacher Approved badge on Google Play."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I create characters in Avatar World?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To create characters in Avatar World, tap the character maker icon at the top-right of the screen. You can choose from three body types (child, teen, adult), customize facial features, skin tone, hairstyles, and outfits. The free version allows you to create 3 avatars."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I play Avatar World on PC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! You can play Avatar World on PC through our browser version here on AvatarWorldOnline.com, or by using BlueStacks emulator, or Google Play Games on PC. No download is needed to play on our website."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What locations can I explore in Avatar World?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Avatar World features multiple cities including General City, Island City, Stardust City, and Sunrise Hills. You can explore the Train Station, customizable Homes, School, Mall, Hotel with pool, Hospital, Playground, Ballet Academy, Dog Park, Movie Studio, Courthouse, and many more locations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Avatar World like Toca Boca?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Avatar World is similar to Toca Boca World in that both are sandbox simulation games for kids. However, many players consider Avatar World to offer more character customization options, more free content, and regular weekly updates. Both games encourage creative play and storytelling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Avatar World work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The mobile app version of Avatar World works primarily offline as a single-player game. Our browser version requires an internet connection to play. Your progress is saved automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there hidden secrets in Avatar World?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! Avatar World is full of hidden secrets, Easter eggs, and puzzle elements. Players love discovering hidden items in various locations. Exploring thoroughly and interacting with objects often reveals surprises and special items."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often is Avatar World updated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Avatar World receives regular weekly updates with new content, locations, outfits, and features. Recent updates have added the Courthouse, Dog Park, Winter Collection, and seasonal events. The developers at Pazu Games continuously add new content to keep the game fresh and exciting."
+      }
+    }
+  ]
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Play Avatar World Online",
+  "description": "Learn how to play Avatar World online for free - create characters, explore cities, and build your dream world.",
+  "totalTime": "PT2M",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Start the Game",
+      "text": "Click the Play button above to load Avatar World in your browser. No download or installation required.",
+      "position": 1
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Create Your Avatar",
+      "text": "Tap the character icon to open the Character Maker. Choose body type, customize face, hair, and outfit.",
+      "position": 2
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Explore Locations",
+      "text": "Visit different locations like the Mall, School, Hotel, and Hospital. Each area has unique activities and items to discover.",
+      "position": 3
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Build Your Home",
+      "text": "Customize your three-floor home with furniture, decorations, and DIY crafting. Make it your dream house!",
+      "position": 4
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Create Stories",
+      "text": "Use your imagination to create unlimited stories with your avatars. Role-play as a doctor, chef, teacher, or any character you want!",
+      "position": 5
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Avatar World - Play Free Online",
+      "item": "https://avatarworldonline.com"
+    }
+  ]
+};
+
+const tableOfContents = [
+  { id: "play-now", title: "Play Avatar World Now" },
+  { id: "what-is", title: "What is Avatar World?" },
+  { id: "how-to-play", title: "How to Play" },
+  { id: "features", title: "Game Features" },
+  { id: "locations", title: "Explore Locations" },
+  { id: "characters", title: "Character Creation" },
+  { id: "tips", title: "Tips & Tricks" },
+  { id: "platforms", title: "Available Platforms" },
+  { id: "faq", title: "FAQ" }
+];
+---
+
+<BaseLayout
+  title="Avatar World - Play Free Online | No Download | AvatarWorldOnline.com"
+  description="Play Avatar World free online! Create characters, explore cities, build homes. Best simulation game for kids by Pazu Games. No download - play now in browser!"
+  ogImage="/assets/covers/avatar-world-cover.png"
+  ogType="website"
+  keywords="avatar world, avatar world online, avatar world game, play avatar world, avatar world free, avatar world unblocked, avatar world pazu, avatar world browser, avatar world no download, avatar world play online free, simulation games for kids, role playing games, life simulation games, games like toca boca, character creation games, virtual world games, avatar world city life"
+  jsonLd={[organizationSchema, gameSchema, webApplicationSchema, faqSchema, howToSchema, breadcrumbSchema]}
+>
+  <Header />
+  
+  <main id="main-content">
+    <div class="container">
+      <Breadcrumbs items={breadcrumbItems} />
+      
+      <article class="game-article article-spaced" itemscope itemtype="https://schema.org/Article">
+        
+        <!-- Hero Section -->
+        <header class="hero-section">
+          <h1 itemprop="headline">Avatar World - Play Free Online</h1>
+          <p class="hero-tagline">Be Whoever You Want! Create, Explore & Build Your Dream World</p>
+          <div class="hero-stats">
+            <span class="stat">⭐ 4.8 Rating</span>
+            <span class="stat">📥 220M+ Downloads</span>
+            <span class="stat">👨‍👩‍👧‍👦 40M Monthly Players</span>
+          </div>
+        </header>
+
+        <!-- Game Section -->
+        <section id="play-now" class="game-section">
+          <h2>Play Avatar World Online Free - No Download</h2>
+          <GameIframe 
+            src="https://tocaboca-world.com/wp-content/uploads/games/html5/A/AvatarWorld/index.html"
+            title="Avatar World - Play Free Online Game"
+            description="Play Avatar World instantly in your browser. Create avatars, explore cities, and build your dream home. Free online game - no download required!"
+          />
+          <RatingWidget rating={4.8} ratingCount={245000} gameName="Avatar World" />
+          
+          <div class="download-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.pazugames.avatarworld" target="_blank" rel="noopener noreferrer" class="download-btn android">
+              <span>📱</span> Google Play
+            </a>
+            <a href="https://apps.apple.com/us/app/avatar-world/id1635318586" target="_blank" rel="noopener noreferrer" class="download-btn ios">
+              <span>🍎</span> App Store
+            </a>
+          </div>
+        </section>
+
+        <!-- Table of Contents -->
+        <TableOfContents items={tableOfContents} />
+
+        <!-- What is Avatar World -->
+        <section id="what-is">
+          <h2>What is Avatar World?</h2>
+          
+          <p><strong>Avatar World</strong> is the most innovative role-playing simulation game developed by <strong>Pazu Games Ltd</strong>, an Israeli gaming studio trusted by over 100 million families worldwide. Launched in December 2022, Avatar World has become a global phenomenon with <strong>over 220 million downloads</strong> and <strong>40 million monthly active players</strong>.</p>
+          
+          <p>The game's motto <em>"Be Whoever You Want!"</em> perfectly captures its essence - unlimited creative freedom where players create customizable avatars, build dream homes, explore vibrant virtual cities, and craft endless stories. Whether you want to be a doctor at the Hospital, a chef in your kitchen, a teacher at School, or a movie star at the Studio - Avatar World makes it possible!</p>
+          
+          <p>Unlike other simulation games, Avatar World offers <strong>extensive free content</strong> with weekly updates adding new locations, outfits, and features. It's designed specifically for <strong>kids and families</strong>, featuring a safe environment with no open chat, no violence, and no inappropriate content. The game has earned the prestigious <strong>"Teacher Approved"</strong> badge on Google Play.</p>
+
+          <div class="highlight-box">
+            <h3>🏆 Why 220 Million Players Love Avatar World</h3>
+            <ul class="game-details">
+              <li data-icon="✨">Unlimited character customization with 3 body types</li>
+              <li data-icon="🏠">Build and decorate your 3-floor dream home</li>
+              <li data-icon="🌍">Explore 4 cities with 20+ unique locations</li>
+              <li data-icon="🎭">Role-play as any character - doctor, chef, teacher, judge</li>
+              <li data-icon="🔍">Discover hidden secrets and Easter eggs</li>
+              <li data-icon="🆓">Massive free content with weekly updates</li>
+              <li data-icon="👨‍👩‍👧">100% safe for kids - no chat, no violence</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- How to Play -->
+        <section id="how-to-play">
+          <h2>How to Play Avatar World Online</h2>
+          
+          <p>Playing <strong>Avatar World online</strong> is easy and completely free! Follow these simple steps to start your adventure:</p>
+          
+          <div class="steps-container">
+            <div class="step">
+              <span class="step-number">1</span>
+              <h3>Start Playing Instantly</h3>
+              <p>Click the <strong>Play button</strong> above to load Avatar World in your browser. No download, no installation, no sign-up required - just click and play!</p>
+            </div>
+            
+            <div class="step">
+              <span class="step-number">2</span>
+              <h3>Create Your Avatar</h3>
+              <p>Tap the <strong>character icon</strong> (top-right) to open the Character Maker. Choose from child, teen, or adult body types. Customize everything - face shape, skin tone, eyes, nose, hairstyle, and outfit!</p>
+            </div>
+            
+            <div class="step">
+              <span class="step-number">3</span>
+              <h3>Explore the World</h3>
+              <p>Use the <strong>map</strong> to travel between locations. Start at the Train Station, visit your Home, explore the Mall, attend School, or check into the Hotel. Each location has unique activities!</p>
+            </div>
+            
+            <div class="step">
+              <span class="step-number">4</span>
+              <h3>Build Your Home</h3>
+              <p>Your <strong>3-floor home</strong> is fully customizable! Add furniture, change wall colors, set up your kitchen, bedroom, and living room. Use DIY crafting to create unique items.</p>
+            </div>
+            
+            <div class="step">
+              <span class="step-number">5</span>
+              <h3>Create Unlimited Stories</h3>
+              <p>The magic of Avatar World is <strong>storytelling</strong>! Role-play as a doctor healing patients, a chef cooking meals, a teacher in class, or create your own unique adventures. Your imagination is the only limit!</p>
+            </div>
+          </div>
+
+          <div class="pro-tip">
+            <strong>💡 Pro Tip:</strong> Use the in-game phone (bottom-right button) to access Contacts and summon any character, or order Food Delivery for your home!
+          </div>
+        </section>
+
+        <!-- Game Features -->
+        <section id="features">
+          <h2>Avatar World Game Features</h2>
+          
+          <p>Avatar World stands out among <strong>simulation games for kids</strong> with its incredible depth and variety. Here's what makes it special:</p>
+          
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>👤 Character Customization</h3>
+              <p>Create unlimited unique avatars with three body types (child, teen, adult). Customize every detail - face shape, skin tone, eyes, nose, mouth, expressions, hairstyles, and hundreds of outfits and accessories.</p>
+            </div>
+            
+            <div class="feature-card">
+              <h3>🏘️ Home Building</h3>
+              <p>Design your dream 3-floor home! Choose furniture, wall colors, flooring, and decorations. Set up a modern kitchen, cozy bedroom, entertainment room, or anything you can imagine with DIY crafting.</p>
+            </div>
+            
+            <div class="feature-card">
+              <h3>🌆 Multiple Cities</h3>
+              <p>Explore four unique cities - General City, Island City, Stardust City (with snow!), and Sunrise Hills shopping district. Travel by train or plane to discover new adventures!</p>
+            </div>
+            
+            <div class="feature-card">
+              <h3>🎮 Mini-Games</h3>
+              <p>Enjoy various activities: drone delivery missions, treasure hunts, sports games, band performances, cooking challenges, and more! There's always something fun to do.</p>
+            </div>
+            
+            <div class="feature-card">
+              <h3>🎭 Role-Playing</h3>
+              <p>Be whoever you want! Work as a doctor at the Hospital, teach at School, serve food at restaurants, perform at the Ballet Academy, judge cases at the Courthouse, or become a movie star!</p>
+            </div>
+            
+            <div class="feature-card">
+              <h3>🐕 Pet Care</h3>
+              <p>Visit the Dog Park update to play with adorable pets! Take care of dogs, play fetch, and include furry friends in your stories.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Locations -->
+        <section id="locations">
+          <h2>Explore Avatar World Locations</h2>
+          
+          <p>Avatar World features an ever-expanding world with <strong>20+ unique locations</strong> across multiple cities. Each location offers different activities, items, and storytelling opportunities:</p>
+          
+          <div class="locations-grid">
+            <div class="location-category">
+              <h3>🏙️ General City</h3>
+              <ul>
+                <li><strong>Train Station</strong> - Your starting point, travel hub</li>
+                <li><strong>Home</strong> - 3-floor customizable house</li>
+                <li><strong>School</strong> - Classrooms, cafeteria, playground</li>
+                <li><strong>Mall</strong> - Shopping, food court, stores</li>
+                <li><strong>Hotel</strong> - Pool, grill area, luxury rooms</li>
+                <li><strong>Hospital</strong> - Medical role-play, emergency room</li>
+                <li><strong>Playground</strong> - Outdoor fun and games</li>
+              </ul>
+            </div>
+            
+            <div class="location-category">
+              <h3>🎨 Activity Locations</h3>
+              <ul>
+                <li><strong>Ballet Academy</strong> - Dance performances</li>
+                <li><strong>Yoga Studio</strong> - Relaxation and wellness</li>
+                <li><strong>Basketball Court</strong> - Sports activities</li>
+                <li><strong>Movie Studio</strong> - Green screen filming</li>
+                <li><strong>Barbershop</strong> - Hair styling</li>
+                <li><strong>Dog Park</strong> - Pet care and play</li>
+                <li><strong>Courthouse</strong> - Legal role-play (newest!)</li>
+              </ul>
+            </div>
+            
+            <div class="location-category">
+              <h3>🌴 Other Cities</h3>
+              <ul>
+                <li><strong>Island City</strong> - Beach, tropical adventures</li>
+                <li><strong>Stardust City</strong> - Dynamic weather, snow!</li>
+                <li><strong>Sunrise Hills</strong> - Daizy & Twinkle stores</li>
+                <li><strong>Airport</strong> - Travel between cities</li>
+              </ul>
+            </div>
+          </div>
+          
+          <p class="update-note">📅 <strong>New locations added weekly!</strong> Pazu Games continuously updates Avatar World with fresh content, seasonal events, and exciting new areas to explore.</p>
+        </section>
+
+        <!-- Character Creation -->
+        <section id="characters">
+          <h2>Avatar World Character Creation Guide</h2>
+          
+          <p>Creating characters in Avatar World is one of the most enjoyable parts of the game! The <strong>Character Maker</strong> offers unprecedented customization depth:</p>
+          
+          <h3>Body Types</h3>
+          <p>Choose from three body types to match your story:</p>
+          <ul>
+            <li><strong>Child</strong> - Perfect for school stories, playground adventures</li>
+            <li><strong>Teen</strong> - Great for mall trips, sports, social stories</li>
+            <li><strong>Adult</strong> - Ideal for professional roles - doctors, teachers, chefs</li>
+          </ul>
+          
+          <h3>Facial Customization</h3>
+          <p>Make each avatar unique with options for:</p>
+          <ul>
+            <li>Multiple skin tones for diversity</li>
+            <li>Various eye shapes, colors, and expressions</li>
+            <li>Different nose and mouth styles</li>
+            <li>Eyebrows, freckles, and facial features</li>
+            <li>Expressive emotions and moods</li>
+          </ul>
+          
+          <h3>Fashion & Style</h3>
+          <p>Dress your avatars with:</p>
+          <ul>
+            <li>Hundreds of outfits - casual, formal, costumes</li>
+            <li>Hairstyles for every look</li>
+            <li>Accessories - glasses, hats, jewelry</li>
+            <li>Seasonal collections - Winter, Halloween, Holiday</li>
+            <li>Professional uniforms - doctor, chef, police</li>
+          </ul>
+          
+          <div class="info-box">
+            <strong>💡 Free Version:</strong> Create up to 3 unique avatars. Pazu Plus subscribers get unlimited avatar slots plus exclusive outfits and accessories!
+          </div>
+        </section>
+
+        <!-- Tips & Tricks -->
+        <section id="tips">
+          <h2>Avatar World Tips & Tricks</h2>
+          
+          <p>Master Avatar World with these expert tips that most players don't know:</p>
+          
+          <div class="tips-list">
+            <div class="tip">
+              <h3>🔍 Find Hidden Secrets</h3>
+              <p>Avatar World is full of Easter eggs! Tap on everything - paintings, plants, furniture. Many objects have hidden interactions or reveal secret items. The Hospital and Movie Studio have some of the best hidden surprises!</p>
+            </div>
+            
+            <div class="tip">
+              <h3>📱 Use the In-Game Phone</h3>
+              <p>The phone feature (bottom-right) is powerful! Use <strong>Contacts</strong> to instantly summon any character to your current location. <strong>Food Delivery</strong> brings meals directly to your home for cooking role-play!</p>
+            </div>
+            
+            <div class="tip">
+              <h3>🎬 Create Movie Magic</h3>
+              <p>Visit the Movie Studio for the <strong>green screen</strong> feature! Position your characters, choose backgrounds, and create epic movie scenes. Great for creative storytelling!</p>
+            </div>
+            
+            <div class="tip">
+              <h3>🏠 Home Design Secrets</h3>
+              <p>In your Home, you can move items between floors! Create themed rooms - a hospital floor, school floor, or restaurant. Combine items creatively for unique setups.</p>
+            </div>
+            
+            <div class="tip">
+              <h3>👥 Multi-Character Stories</h3>
+              <p>Create a family! Make child, teen, and adult avatars, then bring them together using the phone's Contacts feature. Act out family dinners, school days, and adventures!</p>
+            </div>
+            
+            <div class="tip">
+              <h3>🎉 Seasonal Events</h3>
+              <p>Check the game during holidays! Avatar World adds special seasonal content for Christmas, Halloween, Easter, and more. Limited-time items and decorations appear!</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Platforms -->
+        <section id="platforms">
+          <h2>Play Avatar World on Any Device</h2>
+          
+          <p>Avatar World is available on multiple platforms so you can play anywhere:</p>
+          
+          <div class="platforms-grid">
+            <div class="platform-card">
+              <h3>🌐 Web Browser (Here!)</h3>
+              <p>Play instantly on AvatarWorldOnline.com - no download needed! Works on any computer with a modern browser. Perfect for playing at home or school.</p>
+              <span class="platform-tag">Free • No Download • Instant Play</span>
+            </div>
+            
+            <div class="platform-card">
+              <h3>📱 Android</h3>
+              <p>Download from Google Play Store. Requires Android 6.0 or higher. Rated "Teacher Approved" with 100M+ downloads.</p>
+              <a href="https://play.google.com/store/apps/details?id=com.pazugames.avatarworld" target="_blank" rel="noopener" class="platform-link">Get on Google Play →</a>
+            </div>
+            
+            <div class="platform-card">
+              <h3>🍎 iOS (iPhone/iPad)</h3>
+              <p>Download from App Store. Requires iOS 12.0 or later. Also works on Mac with M1 chip or later.</p>
+              <a href="https://apps.apple.com/us/app/avatar-world/id1635318586" target="_blank" rel="noopener" class="platform-link">Get on App Store →</a>
+            </div>
+            
+            <div class="platform-card">
+              <h3>💻 PC (Windows)</h3>
+              <p>Play on PC via Google Play Games, BlueStacks emulator, or simply use our browser version above!</p>
+              <span class="platform-tag">Multiple Options Available</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Avatar World vs Toca Boca -->
+        <section id="comparison">
+          <h2>Avatar World vs Toca Boca World</h2>
+          
+          <p>Many players wonder how <strong>Avatar World</strong> compares to <strong>Toca Boca World</strong>. Here's an honest comparison:</p>
+          
+          <div class="comparison-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Avatar World</th>
+                  <th>Toca Boca</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Character Customization</td>
+                  <td>⭐⭐⭐⭐⭐ Extensive</td>
+                  <td>⭐⭐⭐⭐ Good</td>
+                </tr>
+                <tr>
+                  <td>Free Content</td>
+                  <td>⭐⭐⭐⭐⭐ Lots free</td>
+                  <td>⭐⭐⭐ Some free</td>
+                </tr>
+                <tr>
+                  <td>Update Frequency</td>
+                  <td>⭐⭐⭐⭐⭐ Weekly</td>
+                  <td>⭐⭐⭐⭐ Regular</td>
+                </tr>
+                <tr>
+                  <td>Art Style</td>
+                  <td>Cute, colorful, anime-inspired</td>
+                  <td>Quirky, unique, artistic</td>
+                </tr>
+                <tr>
+                  <td>Hidden Secrets</td>
+                  <td>⭐⭐⭐⭐⭐ Many Easter eggs</td>
+                  <td>⭐⭐⭐⭐ Some secrets</td>
+                </tr>
+                <tr>
+                  <td>Price</td>
+                  <td>Free + Optional Pazu Plus</td>
+                  <td>Free + In-app purchases</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <p><strong>Verdict:</strong> Both games are excellent choices for creative kids! Avatar World tends to offer more free content and character customization, while Toca Boca has a unique artistic style. Many families enjoy both games!</p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+          <h2>Avatar World FAQ - Frequently Asked Questions</h2>
+          
+          <div class="faq-container">
+            <div class="faq-item">
+              <h3>Is Avatar World completely free?</h3>
+              <p>Yes! Avatar World is free to download and play with extensive free content including multiple locations, character customization, and regular updates. Optional in-app purchases and Pazu Plus subscription ($9.99/month) unlock additional content and remove ads.</p>
+            </div>
+            
+            <div class="faq-item">
+              <h3>Can I play Avatar World without downloading?</h3>
+              <p>Absolutely! You can play Avatar World online right here on AvatarWorldOnline.com without any download. Just click play and start your adventure instantly in your browser!</p>
+            </div>
+            
+            <div class="faq-item">
+              <h3>Is Avatar World safe for my child?</h3>
+              <p>Yes, Avatar World is designed with child safety as a priority. There's no open chat with strangers, no violent content, no inappropriate material. It's rated 4+ on iOS and "Everyone" on Android, trusted by over 100 million families worldwide.</p>
+            </div>
+            
+            <div class="faq-item">
+              <h3>How do I save my progress?</h3>
+              <p>Avatar World auto-saves your progress automatically. For cloud backup across devices, create a Pazu account by going to the "Grown Ups" section → Account → Create Account.</p>
+            </div>
+            
+            <div class="faq-item">
+              <h3>What age is Avatar World appropriate for?</h3>
+              <p>Avatar World is suitable for children ages 4 and up. Younger children may need parental guidance due to the game's complexity. The content is 100% family-friendly with no violence or inappropriate themes.</p>
+            </div>
+            
+            <div class="faq-item">
+              <h3>Are there ads in Avatar World?</h3>
+              <p>The free version may contain some ads. For an ad-free experience, subscribe to Pazu Plus which also unlocks all premium content across Avatar World and 50+ other Pazu games.</p>
+            </div>
+            
+            <div class="faq-item">
+              <h3>Can I play Avatar World at school?</h3>
+              <p>Yes! Our browser version of Avatar World is often accessible at school. It's also marked as "Teacher Approved" on Google Play, recognizing its educational and creative value.</p>
+            </div>
+            
+            <div class="faq-item">
+              <h3>How often does Avatar World get new content?</h3>
+              <p>Pazu Games releases updates approximately every week! New locations, outfits, features, and seasonal content are added regularly. Recent additions include the Courthouse, Dog Park, and Winter Collection.</p>
+            </div>
+            
+            <div class="faq-item">
+              <h3>Who created Avatar World?</h3>
+              <p>Avatar World was developed by Pazu Games Ltd, an Israeli gaming company founded in 2014. Their mission is "Creating Worlds for Kids" and they have over 50 games trusted by 100+ million families worldwide.</p>
+            </div>
+            
+            <div class="faq-item">
+              <h3>Can I play multiplayer with friends?</h3>
+              <p>Avatar World is primarily a single-player game. A multiplayer beta exists but is currently limited to select content creators. You can still share your creations and stories with friends by showing them your screen!</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+          <h2>Ready to Play Avatar World?</h2>
+          <p>Join <strong>40 million monthly players</strong> in the world's most creative simulation game! Create your avatar, explore amazing cities, build your dream home, and craft unlimited stories.</p>
+          <a href="#play-now" class="cta-button">🎮 Play Avatar World Now - Free!</a>
+          <p class="cta-subtext">No download • No sign-up • Play instantly in browser</p>
+        </section>
+
+      </article>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+.hero-section h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  background: linear-gradient(135deg, var(--neon-green), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 40px rgba(74, 246, 38, 0.3);
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-stats .stat {
+  background: var(--dark-secondary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  color: var(--yellow);
+  border: 1px solid var(--purple);
+}
+
+/* Download Buttons */
+.download-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.download-btn.android {
+  background: linear-gradient(135deg, #3DDC84, #00C853);
+  color: #000;
+}
+
+.download-btn.ios {
+  background: linear-gradient(135deg, #555, #333);
+  color: #fff;
+}
+
+.download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* Article Content */
+.article-spaced section {
+  margin-bottom: 3rem;
+}
+
+.article-spaced h2 {
+  color: var(--cyan);
+  border-bottom: 2px solid var(--purple);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.article-spaced h3 {
+  color: var(--yellow);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.article-spaced p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.article-spaced ul, .article-spaced ol {
+  margin: 1rem 0 1.5rem 1.5rem;
+  line-height: 1.8;
+}
+
+.article-spaced li {
+  margin-bottom: 0.5rem;
+}
+
+/* Highlight Box */
+.highlight-box {
+  background: linear-gradient(135deg, rgba(74, 246, 38, 0.1), rgba(34, 230, 230, 0.1));
+  border: 2px solid var(--neon-green);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.highlight-box h3 {
+  color: var(--neon-green);
+  margin-top: 0;
+}
+
+.game-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.game-details li {
+  padding: 0.5rem 0;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.game-details li::before {
+  content: attr(data-icon);
+  position: absolute;
+  left: 0;
+}
+
+/* Steps Container */
+.steps-container {
+  display: grid;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.step {
+  background: var(--dark-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  padding-left: 5rem;
+  position: relative;
+  border-left: 4px solid var(--purple);
+}
+
+.step-number {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.step h3 {
+  margin-top: 0;
+  color: var(--cyan);
+}
+
+/* Pro Tip */
+.pro-tip, .info-box {
+  background: rgba(255, 230, 109, 0.1);
+  border: 1px solid var(--yellow);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  background: var(--dark-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--purple);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(122, 48, 255, 0.3);
+}
+
+.feature-card h3 {
+  color: var(--neon-green);
+  margin-top: 0;
+}
+
+/* Locations Grid */
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.location-category {
+  background: var(--dark-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--dark-tertiary);
+}
+
+.location-category h3 {
+  margin-top: 0;
+  color: var(--cyan);
+  border-bottom: 1px solid var(--dark-tertiary);
+  padding-bottom: 0.5rem;
+}
+
+.location-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.location-category li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.update-note {
+  background: rgba(34, 230, 230, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+/* Tips List */
+.tips-list {
+  display: grid;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.tip {
+  background: var(--dark-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border-left: 4px solid var(--yellow);
+}
+
+.tip h3 {
+  margin-top: 0;
+  color: var(--yellow);
+}
+
+/* Platforms Grid */
+.platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.platform-card {
+  background: var(--dark-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid var(--dark-tertiary);
+}
+
+.platform-card h3 {
+  margin-top: 0;
+  color: var(--cyan);
+}
+
+.platform-tag {
+  display: inline-block;
+  background: var(--purple);
+  color: var(--text-white);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.platform-link {
+  display: inline-block;
+  color: var(--neon-green);
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+/* Comparison Table */
+.comparison-table {
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+.comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--dark-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.comparison-table th, .comparison-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--dark-tertiary);
+}
+
+.comparison-table th {
+  background: var(--purple);
+  color: var(--text-white);
+}
+
+.comparison-table tr:hover {
+  background: rgba(122, 48, 255, 0.1);
+}
+
+/* FAQ Container */
+.faq-container {
+  display: grid;
+  gap: 1rem;
+}
+
+.faq-item {
+  background: var(--dark-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--dark-tertiary);
+}
+
+.faq-item h3 {
+  color: var(--cyan);
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.faq-item p {
+  margin: 0;
+  color: var(--text-light);
+}
+
+/* Final CTA */
+.final-cta {
+  text-align: center;
+  background: linear-gradient(135deg, rgba(122, 48, 255, 0.2), rgba(74, 246, 38, 0.1));
+  border: 2px solid var(--purple);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  margin-top: 3rem;
+}
+
+.final-cta h2 {
+  border: none;
+  color: var(--neon-green);
+}
+
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--neon-green), var(--cyan));
+  color: var(--black);
+  padding: 1.25rem 3rem;
+  border-radius: 50px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin: 1.5rem 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(74, 246, 38, 0.4);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(74, 246, 38, 0.6);
+}
+
+.cta-subtext {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-stats {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .step {
+    padding-left: 1.5rem;
+    padding-top: 4rem;
+  }
+  
+  .step-number {
+    top: 1rem;
+    left: 1rem;
+    transform: none;
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+  
+  .features-grid, .locations-grid, .platforms-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
