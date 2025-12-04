@@ -283,12 +283,6 @@ const tableOfContents = [
           </div>
         </header>
 
-        <!-- Featured Images -->
-        <div class="featured-images">
-          <img src="/assets/covers/avatar-world-cover.webp" alt="Avatar World Online - Free simulation game for kids featuring character customization, city exploration, and creative roleplay" class="cover-image" itemprop="image" loading="eager" />
-          <img src="/assets/icons/avatar-world-logo.webp" alt="Avatar World logo - Play free online simulation game" class="logo-image" loading="lazy" />
-        </div>
-
         <!-- Game Section -->
         <section id="play-now" class="game-section">
           <h2>Play Avatar World Online Free - No Download</h2>
@@ -317,6 +311,10 @@ const tableOfContents = [
           <h2>What is Avatar World?</h2>
           
           <p><strong>Avatar World</strong> is the most innovative role-playing simulation game developed by <strong>Pazu Games Ltd</strong>, an Israeli gaming studio trusted by over 100 million families worldwide. Launched in December 2022, Avatar World has become a global phenomenon with <strong>over 220 million downloads</strong> and <strong>40 million monthly active players</strong>.</p>
+          
+          <div class="article-cover-image">
+            <img src="/assets/covers/avatar-world-cover.webp" alt="Avatar World Online - Free simulation game for kids featuring character customization, city exploration, and creative roleplay" itemprop="image" loading="eager" />
+          </div>
           
           <p>The game's motto <em>"Be Whoever You Want!"</em> perfectly captures its essence - unlimited creative freedom where players create customizable avatars, build dream homes, explore vibrant virtual cities, and craft endless stories. Whether you want to be a doctor at the Hospital, a chef in your kitchen, a teacher at School, or a movie star at the Studio - Avatar World makes it possible!</p>
           
@@ -853,29 +851,19 @@ const tableOfContents = [
   text-shadow: 0 0 40px rgba(74, 246, 38, 0.3);
 }
 
-/* Featured Images */
-.featured-images {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
+/* Article Cover Image */
+.article-cover-image {
   margin: 2rem 0;
+  text-align: center;
 }
 
-.cover-image {
+.article-cover-image img {
   width: 100%;
-  max-width: 1000px;
-  height: auto;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(74, 246, 38, 0.2);
-  border: 2px solid var(--neon-green);
-}
-
-.logo-image {
-  width: 200px;
+  max-width: 800px;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(122, 48, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .hero-tagline {
