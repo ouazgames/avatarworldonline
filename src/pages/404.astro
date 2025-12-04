@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="404 - Page Not Found | Avatar World Online"
+  description="The page you're looking for doesn't exist. Return to AvatarWorldOnline.com to play Avatar World online for free."
+  keywords="404, page not found, avatar world"
+>
+  <Header />
+  
+  <main id="main-content">
+    <div class="container">
+      <div class="error-page">
+        <div class="error-content">
+          <h1 class="error-code">404</h1>
+          <h2 class="error-title">Page Not Found</h2>
+          <p class="error-message">Oops! The page you're looking for doesn't exist. It might have been moved or deleted.</p>
+          
+          <div class="error-actions">
+            <a href="/" class="btn-primary">🎮 Play Avatar World</a>
+            <a href="/contact/" class="btn-secondary">Contact Us</a>
+          </div>
+          
+          <div class="popular-links">
+            <h3>Popular Pages:</h3>
+            <ul>
+              <li><a href="/">Play Avatar World Free</a></li>
+              <li><a href="/contact/">Contact</a></li>
+              <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .error-page {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0;
+  }
+
+  .error-content {
+    text-align: center;
+  }
+
+  .error-code {
+    font-size: 8rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--pink), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    line-height: 1;
+    text-shadow: 0 0 60px rgba(255, 107, 157, 0.4);
+  }
+
+  .error-title {
+    font-size: 2.5rem;
+    color: var(--cyan);
+    margin: 1rem 0;
+  }
+
+  .error-message {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin: 1.5rem 0 3rem;
+    line-height: 1.6;
+  }
+
+  .error-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--pink), var(--cyan));
+    color: var(--black);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid var(--purple);
+    color: var(--text-white);
+  }
+
+  .btn-secondary:hover {
+    background: var(--purple);
+    transform: translateY(-3px);
+  }
+
+  .popular-links {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--dark-secondary);
+  }
+
+  .popular-links h3 {
+    color: var(--yellow);
+    margin-bottom: 1rem;
+  }
+
+  .popular-links ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+
+  .popular-links a {
+    color: var(--cyan);
+    transition: color 0.3s ease;
+  }
+
+  .popular-links a:hover {
+    color: var(--pink);
+  }
+
+  @media (max-width: 768px) {
+    .error-code {
+      font-size: 5rem;
+    }
+
+    .error-title {
+      font-size: 2rem;
+    }
+
+    .error-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .popular-links ul {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>
