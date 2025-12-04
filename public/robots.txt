@@ -2,27 +2,27 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /admin/
+Disallow: /_astro/
 
 # Sitemap
-Sitemap: https://avatarworldonline.com/sitemap-index.xml
+Sitemap: https://avatarworldonline.com/sitemap.xml
 
-# Crawl-delay for polite bots
-Crawl-delay: 1
-
-# Allow all image indexing
-User-agent: Googlebot-Image
-Allow: /assets/
-
-# Allow all major search engines
+# Crawl-delay for specific bots
 User-agent: Googlebot
-Allow: /
+Crawl-delay: 0
 
 User-agent: Bingbot
-Allow: /
+Crawl-delay: 0
 
 User-agent: Slurp
-Allow: /
+Crawl-delay: 1
 
-User-agent: DuckDuckBot
-Allow: /
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

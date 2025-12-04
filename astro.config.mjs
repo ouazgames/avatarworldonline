@@ -14,7 +14,14 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
     compressHTML: true,
+    assets: '_astro',
   },
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+    },
+  },
+  compressHTML: true,
   vite: {
     build: {
       minify: 'terser',
