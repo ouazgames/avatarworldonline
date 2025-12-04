@@ -31,25 +31,31 @@ const organizationSchema = {
 
 const gameSchema = {
   "@context": "https://schema.org",
-  "@type": "VideoGame",
+  "@type": ["VideoGame", "MobileApplication"],
   "name": "Avatar World",
   "alternateName": ["Avatar World Online", "Avatar World City Life", "Avatar World Pazu"],
-  "description": "Avatar World is the most innovative role-playing simulation game where you can create customizable avatars, build dream homes, and explore vibrant virtual cities. Be whoever you want - create unlimited stories with friends and family!",
+  "description": "Avatar World is a role-playing game for kids featuring character customization, home design, and open-world exploration. Create unlimited stories with friends and family!",
   "genre": ["Simulation", "Role-Playing", "Life Simulation", "Sandbox", "Dress Up"],
   "gamePlatform": ["Web Browser", "Android", "iOS", "PC"],
   "applicationCategory": "Game",
-  "operatingSystem": ["Android 6.0+", "iOS 12.0+", "Web Browser", "Windows"],
+  "applicationSubCategory": "Role Playing Game",
+  "operatingSystem": "Android 7.0+, iOS 13.0+",
+  "fileSize": "253 MB",
+  "softwareVersion": "1.10",
+  "playMode": "SinglePlayer",
   "url": "https://avatarworldonline.com",
   "image": "https://avatarworldonline.com/assets/covers/avatar-world-cover.webp",
   "screenshot": "https://avatarworldonline.com/assets/covers/avatar-world-cover.webp",
   "author": {
     "@type": "Organization",
     "name": "Pazu Games Ltd",
-    "url": "https://pazugames.com"
+    "url": "https://www.pazugames.com",
+    "sameAs": "https://play.google.com/store/apps/details?id=com.pazugames.avatarworld"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Pazu Games Ltd"
+    "name": "Avatar World Online",
+    "url": "https://avatarworldonline.com"
   },
   "datePublished": "2022-12-01",
   "offers": {
@@ -60,16 +66,16 @@ const gameSchema = {
   },
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "4.8",
+    "ratingValue": "4.5",
+    "reviewCount": "120",
     "bestRating": "5",
-    "worstRating": "1",
-    "ratingCount": "245000",
-    "reviewCount": "245000"
+    "worstRating": "1"
   },
   "audience": {
     "@type": "PeopleAudience",
-    "suggestedMinAge": "4",
-    "audienceType": "Kids, Families"
+    "audienceType": "Children",
+    "suggestedMinAge": "6",
+    "suggestedMaxAge": "12"
   },
   "inLanguage": ["en", "es", "fr", "de", "pt", "ru", "ja", "ko", "zh"],
   "contentRating": "Everyone",
@@ -276,6 +282,12 @@ const tableOfContents = [
             <span class="stat">👨‍👩‍👧‍👦 40M Monthly Players</span>
           </div>
         </header>
+
+        <!-- Featured Images -->
+        <div class="featured-images">
+          <img src="/assets/covers/avatar-world-cover.webp" alt="Avatar World Online - Free simulation game for kids featuring character customization, city exploration, and creative roleplay" class="cover-image" itemprop="image" loading="eager" />
+          <img src="/assets/icons/avatar-world-logo.webp" alt="Avatar World logo - Play free online simulation game" class="logo-image" loading="lazy" />
+        </div>
 
         <!-- Game Section -->
         <section id="play-now" class="game-section">
@@ -839,6 +851,31 @@ const tableOfContents = [
   background-clip: text;
   margin-bottom: 1rem;
   text-shadow: 0 0 40px rgba(74, 246, 38, 0.3);
+}
+
+/* Featured Images */
+.featured-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.cover-image {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(74, 246, 38, 0.2);
+  border: 2px solid var(--neon-green);
+}
+
+.logo-image {
+  width: 200px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(122, 48, 255, 0.3);
 }
 
 .hero-tagline {
