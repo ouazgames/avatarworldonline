@@ -3,6 +3,11 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /_astro/
+Disallow: /*?*sort=*
+Disallow: /*?*filter=*
+Disallow: /*?*page=*
+Disallow: /*&sort=*
+Disallow: /*&filter=*
 
 # Sitemap
 Sitemap: https://avatarworldonline.com/sitemap.xml
