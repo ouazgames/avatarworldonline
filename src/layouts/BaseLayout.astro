@@ -109,6 +109,10 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
+  <!-- Prefetch for likely navigation -->
+  <link rel="prefetch" href="/contact/" as="document">
+  <link rel="prefetch" href="/privacy-policy/" as="document">
+  
   <!-- Theme Color -->
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)">
@@ -145,7 +149,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
   <slot />
   
   <!-- Service Worker Registration -->
-  <script>
+  <script defer>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').catch(() => {});
