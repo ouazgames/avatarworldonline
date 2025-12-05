@@ -1,0 +1,7 @@
+# Cloudflare Pages Redirects
+
+# Ensure robots.txt is served from our file (not Cloudflare's default)
+/robots.txt /robots.txt 200
+
+# Ensure sitemap is served correctly
+/sitemap.xml /sitemap.xml 200
